@@ -1,0 +1,13 @@
+name = "uEST2D"
+uuid = "5fac7b1e-0744-40c0-a569-b2aace50f74f"
+authors = ["Alex Nunn <alex.nunn@pm.me> and contributors"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
