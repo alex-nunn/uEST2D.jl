@@ -245,7 +245,7 @@ Trajectories are always started at the midplane of the 2D μEST.
 See also [`poincare_section`](@ref)
 """
 function ion_trajectory(
-        E0, y0, α0, T, trap_ϕ=TF_trap_potential, trap_E=TF_trap_E!
+        E0, y0, α0, T, trap_ϕ=TF_trap_potential, trap_E=TF_trap_E!; solve_kws...
         )
     u0 = [y0, 0.0]
     vel0 = sqrt(2 * (E0 - trap_ϕ(u0...)))
@@ -257,10 +257,11 @@ function ion_trajectory(
 
     prob = SecondOrderODEProblem(f!, du0, u0, tspan)
     sol = solve(
-        prob, DPRKN6(),
+        prob, DPRKN6();
         abstol=1e-8,
         reltol=1e-8,
-        maxiters=1e8
+        maxiters=1e8,
+        solve_kws...
     )
     
     return sol
