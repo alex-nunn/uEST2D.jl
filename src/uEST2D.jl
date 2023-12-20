@@ -162,8 +162,8 @@ Return electrostatic potential at (y, z) within Thermo Fisher μEST
 
 See also [`trap_potential`](@ref)
 """
-function TF_trap_potential(y, z)
-    return trap_potential(y, z, TF_lengths, TF_potentials, TF_GAP)
+function TF_trap_potential(y, z, axial_d=0.0)
+    return trap_potential(y, z, TF_lengths, TF_potentials, TF_GAP, axial_d)
 end
 
 
@@ -174,8 +174,8 @@ Add electrostatic field at `pt` to `out` for Thermo Fisher μEST
 
 See also [`trap_E!`](@ref)
 """
-function TF_trap_E!(out, pt)
-    trap_E!(out, pt, TF_lengths, TF_potentials, TF_GAP)
+function TF_trap_E!(out, pt, axial_d=0.0)
+    trap_E!(out, pt, TF_lengths, TF_potentials, TF_GAP, axial_d)
 end
 
 
