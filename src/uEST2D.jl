@@ -255,9 +255,15 @@ function ion_trajectory(
     tspan = (0, T)
     f! = (ddu, du, u, p, t) -> trap_E(ddu, u)
 
+    cbs = CallbackSet(
+        ContinuousCallback((u, t, integ) -> u[3] - 0.5, terminate!),
+        ContinuousCallback((u, t, integ) -> u[3] + 0.5, terminate!),
+    )
+
     prob = SecondOrderODEProblem(f!, du0, u0, tspan)
     sol = solve(
         prob, DPRKN6();
+        callback=cbs,
         abstol=1e-8,
         reltol=1e-8,
         maxiters=1e8,
